@@ -9,7 +9,7 @@ public class CreateOnDeath : MonoBehaviour
     public Vector3 Offset = Vector3.zero;
     public float RandOffset = 0;
 
-    private void OnDestroy()
+    private void OnDeath()
     {
         Vector3 spawnPos = Random.insideUnitCircle * RandOffset;
         spawnPos += transform.position + Offset;
@@ -20,7 +20,11 @@ public class CreateOnDeath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Death Grim = GetComponent<Death>();
+        if (Grim != null)
+        {
+            Grim.OnDeath.AddListener(OnDeath);
+        }
     }
 
     // Update is called once per frame

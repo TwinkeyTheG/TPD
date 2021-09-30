@@ -15,6 +15,11 @@ public class TimedDeath : MonoBehaviour
     IEnumerator DeathTimer()
     {
         yield return new WaitForSeconds(LifeTime);
+        Death Grim = GetComponent<Death>();
+        if (Grim != null)
+        {
+            Grim.OnDeath.Invoke();
+        }
         Destroy(gameObject);
     }
     // Update is called once per frame

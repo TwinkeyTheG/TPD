@@ -16,7 +16,15 @@ public class damage : MonoBehaviour
             h.ChangeHealth(-Amount);
         }
         if (DestroyOnCollide)
+        {
+            Death Grim = GetComponent<Death>();
+            if (Grim != null)
+            {
+                Grim.OnDeath.Invoke();
+            }
             Destroy(gameObject);
+        }
+        
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -36,7 +44,14 @@ public class damage : MonoBehaviour
             h.ChangeHealth(-Amount);
         }
         if (DestroyOnCollide)
+        {
+            Death Grim = GetComponent<Death>();
+            if (Grim != null)
+            {
+                Grim.OnDeath.Invoke();
+            }
             Destroy(gameObject);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

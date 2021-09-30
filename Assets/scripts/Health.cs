@@ -37,8 +37,12 @@ public class Health : MonoBehaviour
     IEnumerator TimedDeath()
     {
         yield return new WaitForSeconds(DeathTime);
-        Destroy (gameObject);
-
+        Death Grim = GetComponent<Death>();
+        if (Grim != null)
+        {
+            Grim.OnDeath.Invoke();
+        }
+        Destroy(gameObject);
     }
     // Start is called before the first frame update
     void Start()
