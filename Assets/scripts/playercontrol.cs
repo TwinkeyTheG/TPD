@@ -15,7 +15,6 @@ public class playercontrol : MonoBehaviour
     float Timer = 0;
     public float propulsionSpeed;
     public Vector3 Offest1 = new Vector3(0.35f, 0.4f, 0);
-    public Vector3 Offset2 = new Vector3(-0.35f, 0.4f, 0);
 
     public float FireError = 1f;
 
@@ -55,7 +54,6 @@ public class playercontrol : MonoBehaviour
             Timer = 0;
             //fire propulsion
             Fire(Offest1);
-            Fire(Offset2);
             FC.TriggerShake(FireShakeTime, FireSHakeMagnitude);
         }
     }

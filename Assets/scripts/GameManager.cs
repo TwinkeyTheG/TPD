@@ -5,9 +5,11 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    //static variable can be access everywhere and it is a single integer
     private static int _score = 0;
-
-    public static UnityEvent OnScoreChange;
+    //There can be only one OnScoreGameManager
+    public static UnityEvent OnScoreChange = new UnityEvent();
+    //allows access to the secret score and runs the scorechange event
 
     public static int Score
     {
@@ -18,8 +20,8 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-            OnScoreChange.Invoke();
             _score = value;
+            OnScoreChange.Invoke();
         }
     }
 
@@ -29,8 +31,6 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            
-
             return _instance;
         }
     }

@@ -9,9 +9,10 @@ public class ScoreText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //update the score when created and setup to listen for the score change event
        Score = GetComponent<TMP_Text>();
        ChangeText();
-        GameManager.OnScoreChange.AddListener(ChangeText);
+       GameManager.OnScoreChange.AddListener(ChangeText);
     }
 
     public void ChangeText()

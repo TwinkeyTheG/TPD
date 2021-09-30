@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Damage : MonoBehaviour
+public class damage : MonoBehaviour
 {
     public int Amount = 4;
     public bool DestroyOnCollide = true;

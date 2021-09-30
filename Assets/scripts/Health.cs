@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     float InvTimer = 0;
 
     float DeathTime = 0.2f;
+    bool Dying = false;
     public void ChangeHealth(int amount)
     {
         //check if the amount is damaged if so check if invincible currently
@@ -26,16 +27,20 @@ public class Health : MonoBehaviour
 
         if (CurrentHealth <= 0 && DestroyAtZero)
         {
+            if(!Dying)
             StartCoroutine(TimedDeath());
         }
         //if over max health fix that 
         if (CurrentHealth > MaxHealth)
+        {
             CurrentHealth = MaxHealth;
+        }
     }
 
  
     IEnumerator TimedDeath()
     {
+        Dying = true;
         yield return new WaitForSeconds(DeathTime);
         Death Grim = GetComponent<Death>();
         if (Grim != null)
