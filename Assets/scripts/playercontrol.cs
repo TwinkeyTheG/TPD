@@ -23,11 +23,16 @@ public class playercontrol : MonoBehaviour
     public float FireShakeTime = 0.1f;
     public float FireSHakeMagnitude = 0.1f;
 
+    //audio things
+    AudioSource SFXPlayer;
+    public AudioClip LaserNoise;
+
     // Start is called before the first frame update
     void Start()
     {
         myRb = GetComponent<Rigidbody2D>();
         FC = FindObjectOfType<camerafollow>();
+        SFXPlayer = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
 
     //fixed update runs on physics times
@@ -38,7 +43,8 @@ public class playercontrol : MonoBehaviour
         float rotSpeed = Input.GetAxisRaw("Horizontal") * RotationSpeed;
 
         //Add fores and torque
-        myRb.AddForce(transform.up * ySpeed * Time.fixedDeltaTime);
+        myRb.AddForce(transform.up * ySpeed * Time.fixedDeltaTime); 
+
         myRb.AddTorque(-rotSpeed * Time.fixedDeltaTime);
 
     }
@@ -52,6 +58,8 @@ public class playercontrol : MonoBehaviour
         {
             //reset the timer
             Timer = 0;
+            //make Laser noise
+            SFXPlayer.PlayOneShot(LaserNoise);
             //fire propulsion
             Fire(Offest1);
             FC.TriggerShake(FireShakeTime, FireSHakeMagnitude);
